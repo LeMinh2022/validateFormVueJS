@@ -1,0 +1,302 @@
+stages:
+  - build
+  - deploy
+
+building_testing_1:
+  image: node:16-alpine3.14
+  stage: build
+  variables:
+    APP_URL_API: https://traning.vify.io/dev1
+  script:
+    - apk update && apk add git
+    - git pull origin dev1
+    - npm install -f --progress=false
+    # - export VITE_APP_URL="$APP_URL_API"
+    - npm run build
+  rules:
+    - if: $CI_COMMIT_REF_NAME == 'dev1'
+  environment:
+    name: testing
+    url: https://traning.vify.io/dev1
+  artifacts:
+    paths:
+      - dist
+
+deploy_testing_1:
+  image: alpine
+  stage: deploy
+  script:
+    - apk add --no-cache rsync openssh bash
+    - mkdir -p ~/.ssh
+    - echo -e "$SSH_PRIVATE_KEY" > ~/.ssh/id_rsa
+    - chmod 600 ~/.ssh/id_rsa
+    - echo -e "Host *\n\tStrictHostKeyChecking no\n\n" > ~/.ssh/config
+    - bash ./rsync.sh "$SSH_STRING" "$PROJECT_DIR_DEV1"
+  rules:
+    - if: $CI_COMMIT_REF_NAME == 'dev1'
+  environment:
+    name: testing
+    url: https://traning.vify.io/dev1
+
+
+building_testing_2:
+  image: node:16-alpine3.14
+  stage: build
+  variables:
+    APP_URL_API: https://traning.vify.io/dev2
+  script:
+    - apk update && apk add git
+    - git pull origin dev2
+    - npm install -f --progress=false
+    # - export VITE_APP_URL="$APP_URL_API"
+    - npm run build
+  rules:
+    - if: $CI_COMMIT_REF_NAME == 'dev2'
+  environment:
+    name: testing
+    url: https://traning.vify.io/dev2
+  artifacts:
+    paths:
+      - dist
+
+deploy_testing_2:
+  image: alpine
+  stage: deploy
+  script:
+    - apk add --no-cache rsync openssh bash
+    - mkdir -p ~/.ssh
+    - echo -e "$SSH_PRIVATE_KEY" > ~/.ssh/id_rsa
+    - chmod 600 ~/.ssh/id_rsa
+    - echo -e "Host *\n\tStrictHostKeyChecking no\n\n" > ~/.ssh/config
+    - bash ./rsync.sh "$SSH_STRING" "$PROJECT_DIR_DEV2"
+  rules:
+    - if: $CI_COMMIT_REF_NAME == 'dev2'
+  environment:
+    name: testing
+    url: https://traning.vify.io/dev2
+
+
+building_testing_3:
+  image: node:16-alpine3.14
+  stage: build
+  variables:
+    APP_URL_API: https://traning.vify.io/dev3
+  script:
+    - apk update && apk add git
+    - git pull origin dev3
+    - npm install -f --progress=false
+    # - export VITE_APP_URL="$APP_URL_API"
+    - npm run build
+  rules:
+    - if: $CI_COMMIT_REF_NAME == 'dev3'
+  environment:
+    name: testing
+    url: https://traning.vify.io/dev3
+  artifacts:
+    paths:
+      - dist
+
+deploy_testing_3:
+  image: alpine
+  stage: deploy
+  script:
+    - apk add --no-cache rsync openssh bash
+    - mkdir -p ~/.ssh
+    - echo -e "$SSH_PRIVATE_KEY" > ~/.ssh/id_rsa
+    - chmod 600 ~/.ssh/id_rsa
+    - echo -e "Host *\n\tStrictHostKeyChecking no\n\n" > ~/.ssh/config
+    - bash ./rsync.sh "$SSH_STRING" "$PROJECT_DIR_DEV3"
+  rules:
+    - if: $CI_COMMIT_REF_NAME == 'dev3'
+  environment:
+    name: testing
+    url: https://traning.vify.io/dev3
+
+  
+building_testing_4:
+  image: node:16-alpine3.14
+  stage: build
+  variables:
+    APP_URL_API: https://traning.vify.io/dev4
+  script:
+    - apk update && apk add git
+    - git pull origin dev4
+    - npm install -f --progress=false
+    # - export VITE_APP_URL="$APP_URL_API"
+    - npm run build
+  rules:
+    - if: $CI_COMMIT_REF_NAME == 'dev4'
+  environment:
+    name: testing
+    url: https://traning.vify.io/dev4
+  artifacts:
+    paths:
+      - dist
+
+deploy_testing_4:
+  image: alpine
+  stage: deploy
+  script:
+    - apk add --no-cache rsync openssh bash
+    - mkdir -p ~/.ssh
+    - echo -e "$SSH_PRIVATE_KEY" > ~/.ssh/id_rsa
+    - chmod 600 ~/.ssh/id_rsa
+    - echo -e "Host *\n\tStrictHostKeyChecking no\n\n" > ~/.ssh/config
+    - bash ./rsync.sh "$SSH_STRING" "$PROJECT_DIR_DEV4"
+  rules:
+    - if: $CI_COMMIT_REF_NAME == 'dev4'
+  environment:
+    name: testing
+    url: https://traning.vify.io/dev4
+
+
+
+building_testing_5:
+  image: node:16-alpine3.14
+  stage: build
+  variables:
+    APP_URL_API: https://traning.vify.io/dev5
+  script:
+    - apk update && apk add git
+    - git pull origin dev5
+    - npm install -f --progress=false
+    # - export VITE_APP_URL="$APP_URL_API"
+    - npm run build
+  rules:
+    - if: $CI_COMMIT_REF_NAME == 'dev5'
+  environment:
+    name: testing
+    url: https://traning.vify.io/dev5
+  artifacts:
+    paths:
+      - dist
+
+deploy_testing_5:
+  image: alpine
+  stage: deploy
+  script:
+    - apk add --no-cache rsync openssh bash
+    - mkdir -p ~/.ssh
+    - echo -e "$SSH_PRIVATE_KEY" > ~/.ssh/id_rsa
+    - chmod 600 ~/.ssh/id_rsa
+    - echo -e "Host *\n\tStrictHostKeyChecking no\n\n" > ~/.ssh/config
+    - bash ./rsync.sh "$SSH_STRING" "$PROJECT_DIR_DEV5"
+  rules:
+    - if: $CI_COMMIT_REF_NAME == 'dev5'
+  environment:
+    name: testing
+    url: https://traning.vify.io/dev5
+
+
+
+building_testing_6:
+  image: node:16-alpine3.14
+  stage: build
+  variables:
+    APP_URL_API: https://traning.vify.io/dev6
+  script:
+    - apk update && apk add git
+    - git pull origin dev6
+    - npm install -f --progress=false
+    # - export VITE_APP_URL="$APP_URL_API"
+    - npm run build
+  rules:
+    - if: $CI_COMMIT_REF_NAME == 'dev6'
+  environment:
+    name: testing
+    url: https://traning.vify.io/dev6
+  artifacts:
+    paths:
+      - dist
+
+deploy_testing_6:
+  image: alpine
+  stage: deploy
+  script:
+    - apk add --no-cache rsync openssh bash
+    - mkdir -p ~/.ssh
+    - echo -e "$SSH_PRIVATE_KEY" > ~/.ssh/id_rsa
+    - chmod 600 ~/.ssh/id_rsa
+    - echo -e "Host *\n\tStrictHostKeyChecking no\n\n" > ~/.ssh/config
+    - bash ./rsync.sh "$SSH_STRING" "$PROJECT_DIR_DEV6"
+  rules:
+    - if: $CI_COMMIT_REF_NAME == 'dev6'
+  environment:
+    name: testing
+    url: https://traning.vify.io/dev6
+
+
+
+building_testing_7:
+  image: node:16-alpine3.14
+  stage: build
+  variables:
+    APP_URL_API: https://traning.vify.io/dev7
+  script:
+    - apk update && apk add git
+    - git pull origin dev7
+    - npm install -f --progress=false
+    # - export VITE_APP_URL="$APP_URL_API"
+    - npm run build
+  rules:
+    - if: $CI_COMMIT_REF_NAME == 'dev7'
+  environment:
+    name: testing
+    url: https://traning.vify.io/dev7
+  artifacts:
+    paths:
+      - dist
+
+deploy_testing_7:
+  image: alpine
+  stage: deploy
+  script:
+    - apk add --no-cache rsync openssh bash
+    - mkdir -p ~/.ssh
+    - echo -e "$SSH_PRIVATE_KEY" > ~/.ssh/id_rsa
+    - chmod 600 ~/.ssh/id_rsa
+    - echo -e "Host *\n\tStrictHostKeyChecking no\n\n" > ~/.ssh/config
+    - bash ./rsync.sh "$SSH_STRING" "$PROJECT_DIR_DEV7"
+  rules:
+    - if: $CI_COMMIT_REF_NAME == 'dev7'
+  environment:
+    name: testing
+    url: https://traning.vify.io/dev7
+
+
+
+building_testing_8:
+  image: node:16-alpine3.14
+  stage: build
+  variables:
+    APP_URL_API: https://traning.vify.io/dev8
+  script:
+    - apk update && apk add git
+    - git pull origin dev8
+    - npm install -f --progress=false
+    # - export VITE_APP_URL="$APP_URL_API"
+    - npm run build
+  rules:
+    - if: $CI_COMMIT_REF_NAME == 'dev8'
+  environment:
+    name: testing
+    url: https://traning.vify.io/dev8
+  artifacts:
+    paths:
+      - dist
+
+deploy_testing_8:
+  image: alpine
+  stage: deploy
+  script:
+    - apk add --no-cache rsync openssh bash
+    - mkdir -p ~/.ssh
+    - echo -e "$SSH_PRIVATE_KEY" > ~/.ssh/id_rsa
+    - chmod 600 ~/.ssh/id_rsa
+    - echo -e "Host *\n\tStrictHostKeyChecking no\n\n" > ~/.ssh/config
+    - bash ./rsync.sh "$SSH_STRING" "$PROJECT_DIR_DEV8"
+  rules:
+    - if: $CI_COMMIT_REF_NAME == 'dev8'
+  environment:
+    name: testing
+    url: https://traning.vify.io/dev8
